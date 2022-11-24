@@ -27,7 +27,7 @@ export  const registerUser = (userInfo,navigate) => {
     return async (dispatch) => {
         try {
             dispatch({type : USER_REGISTRATION_REQUEST});
-            let dataURL = '${BASE_URI_BACKEND}/api/users/register'
+            let dataURL = `${BASE_URI_BACKEND}/api/users/register`
             let response = await axios.post(dataURL,userInfo);
             dispatch({type : USER_REGISTRATION_SUCCESS,payload :response.data})
            // dispatch(alertAction.setAlert(response.data.message,'success'))
