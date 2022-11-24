@@ -3,7 +3,7 @@ import { useNavigation } from "react-router-dom";
 //import * as alertAction from '../alert/alert.action'
 import * as userUtil from '../../util/userUtil';
 import * as tokenUtil from '../../util/tokenUtil';
-
+import { BASE_URI_BACKEND } from "../../util/api"
 
 export const USER_REGISTRATION_REQUEST = 'USER_REGISTRATION_REQUEST'
 export const USER_REGISTRATION_SUCCESS = 'USER_REGISTRATION_SUCCESS'
@@ -27,7 +27,7 @@ export  const registerUser = (userInfo,navigate) => {
     return async (dispatch) => {
         try {
             dispatch({type : USER_REGISTRATION_REQUEST});
-            let dataURL = 'http://127.0.0.1:5000/api/users/register'
+            let dataURL = '${BASE_URI_BACKEND}/api/users/register'
             let response = await axios.post(dataURL,userInfo);
             dispatch({type : USER_REGISTRATION_SUCCESS,payload :response.data})
            // dispatch(alertAction.setAlert(response.data.message,'success'))
@@ -46,7 +46,7 @@ export  const userLogin = (userInfo,navigate) => {
        return async (dispatch) => {
            try{
                dispatch({type:USER_LOGIN_REQUEST});
-               let dataURL = 'http://127.0.0.1:5000/api/users/login';
+               let dataURL = `${BASE_URI_BACKEND}/api/users/login`;
                let response = await axios.post(dataURL,userInfo);
                dispatch({type:USER_LOGIN_SUCCESS, payload : response.data})
                //dispatch(alertAction.setAlert(response.data.msg,'success'))
@@ -76,7 +76,7 @@ export const getUserInfo = () => {
         }
          try{
              dispatch({type : GET_USER_INFO_REQUEST});
-             let dataURL = 'http://127.0.0.1:5000/api/users/'
+             let dataURL = `${BASE_URI_BACKEND}/api/users/`
              let response = await axios.get(dataURL);
              dispatch({type : GET_USER_INFO_SUCCESS, payload : response.data.user});
 

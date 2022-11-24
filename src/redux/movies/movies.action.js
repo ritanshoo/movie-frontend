@@ -1,5 +1,5 @@
 import axios from "axios"
-
+import { BASE_URI_BACKEND } from "../../util/api"
 
 export const SEARCH_MOVIES_REQUEST = 'SEARCH_MOVIES_REQUEST'
 export const SEARCH_MOVIES_SUCCESS = 'SEARCH_MOVIES_SUCCESS'
@@ -40,7 +40,7 @@ export const addWatchList = (movieName) => {
     return async(dispatch) => {
         try{
             dispatch({type : ADD_MOVIES_REQUEST})
-            let url = `http://127.0.0.1:5000/api/users/watchlist`
+            let url = `${BASE_URI_BACKEND}/api/users/watchlist`
             let response = await axios.post(url, movieName);
             dispatch({type : ADD_MOVIES_SUCCESS , payload : response});
             // console.log(response.Search, "Response");
@@ -58,7 +58,7 @@ export const getWatchList = () => {
     return async(dispatch) => {
         try{
             dispatch({type : GET_WATCHLIST_REQUEST})
-            let url = `http://127.0.0.1:5000/api/users/watchlist/all`
+            let url = `${BASE_URI_BACKEND}/api/users/watchlist/all`
             let response = await axios.get(url);
             dispatch({type : GET_WATCHLIST_SUCCESS , payload : response});
         }
@@ -73,7 +73,7 @@ export const removeMovieFromWatchList = (id) => {
     return async(dispatch) => {
         try{
             dispatch({type : REMOVE_WATCHLIST_REQUEST})
-            let url = `http://127.0.0.1:5000/api/users/watchlist/${id}`
+            let url = `${BASE_URI_BACKEND}/api/users/watchlist/${id}`
             let response = await axios.post(url,id);
             dispatch({type : REMOVE_WATCHLIST_SUCCESS , payload : response});
         }
